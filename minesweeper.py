@@ -104,12 +104,10 @@ def reveal(x, y, deep):
                 marked_mines += 1
             if gl.mmap[dx][dy][0] == "mine":
                 real_mines += 1
-
     #If the correct number of mines have been flagged around the site, 
     #then the remaining surrounding sites will be auto-revealed recursively.
     #But in this case if a site is flagged in error, 
     #a real mine around the site will explode immediately.
-
     if real_mines == marked_mines:
         for d in range(9):
             if d==4:
@@ -119,8 +117,6 @@ def reveal(x, y, deep):
             if 0 <= dx < gl.row and 0 <= dy < gl.col:
                 if gl.mmap[dx][dy][1] == u" * ":
                     reveal(dx, dy, deep+1)
-
-
 
 def succeed():
     gl.stopped = True
