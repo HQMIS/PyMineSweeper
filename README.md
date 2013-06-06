@@ -3,10 +3,10 @@ PyMineSweeper
 
 This is a CLI mine sweeper toy written in Python 2.7
 
- * To run:
+ * **To run:**
    * Be sure that you have installed [urwid][1] 
-   * run `python minesweeper.py`
- * To control:
+   * Run `python minesweeper.py`
+ * **To control:**
    * New game: `nnn`
    * Move cursor:
      * Left/Down/Up/Right: `h/j/k/l`  
