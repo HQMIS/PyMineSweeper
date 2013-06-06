@@ -1,22 +1,22 @@
 PyMineSweeper
 =============
 
-This is a CLI mine sweeper toy written in Python 
+This is a CLI mine sweeper toy written in Python 2.7
 
  * To run:
    * Be sure that you have installed [urwid][1] 
    * run `python minesweeper.py`
  * To control:
-   * New game: `n`
+   * New game: `nnn`
    * Move cursor:
      * Left/Down/Up/Right: `h/j/k/l`  
      * Move multiple steps: `nh/nj/nk/nl` (`n` is an integer)
      * Move to the left end: `0`
      * Move to the right end: `$`
-   * Reveal a site: `space`
-   * Mark a mine: `enter`
+   * Reveal a site: `[space]`
+   * Mark a mine: `i`
    * Cancel a mark: `u`
-   * Quit: `q`
+   * Quit: `qqq`
 
 Have fun!
 
