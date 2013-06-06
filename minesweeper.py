@@ -8,18 +8,27 @@ def init():
     gl.stopped = False
     gl.start_time = None
     gl.remain_mines = gl.mines
-    gl.remain_sites = gl.row * gl.col - gl.mines
+    gl.remain_sites = gl.row * gl.col - gl.mines  
     gl.cursor = [int(gl.row/2), int(gl.col/2)]
-    gl.steps_buffer = ""
-    gl.n_key_buffer = 0
-    gl.q_key_buffer = 0
+    gl.steps_buffer = "" #used to trace the inputed digits
+    gl.n_key_buffer = 0  #used to count the inputed "n"
+    gl.q_key_buffer = 0  #used to count the inputed "q"
     gl.mmap = []
     gl.status_bar = "Remains: "+str(gl.remain_mines)
 
     for x in range(gl.row):
         single_row = []
         for y in range(gl.col):
-            single_row.append([0, " * "])     #the real status, and the showing status
+            single_row.append([0, " * "])     
+            #For each site,  there are two values
+            #The first value is the real status
+            #    == number : the number of mines that surround the site
+            #    == "mine" : the site is a mine
+            #The second value is the displayed status
+            #    == number : the number of mines that surround the site
+            #    == " * "  : the site has not be revealed
+            #    == " M "  : the site was marked as a mine
+            #    == " X "  : the site is a mine and it exploded
         gl.mmap.append(single_row)
 
 def start(x, y):
@@ -27,12 +36,12 @@ def start(x, y):
     gl.start_time = time.time()
     linear_mmap = list(range(gl.row*gl.col))
     linear_mmap = list(set(linear_mmap) - set([x*gl.col+y])) #start spot must not be a mine.
-    mine_sites = random.sample(linear_mmap, gl.mines)      #lay gl.mines randomly
-    for i in mine_sites:     #generate a new gl.mmap with the gl.mines
+    mine_sites = random.sample(linear_mmap, gl.mines)      #lay mines randomly
+    for i in mine_sites:     #fill mmap with the mines
         x = int(i/gl.col)
         y = int(i%gl.col)
         gl.mmap[x][y][0] = "mine"
-        for d in range(9):
+        for d in range(9):   #update the number of surrounded sites
             dx = x + int(d/3) - 1
             dy = y + d%3 - 1
             if 0<=dx<gl.row and 0<=dy<gl.col:
@@ -95,6 +104,12 @@ def reveal(x, y, deep):
                 marked_mines += 1
             if gl.mmap[dx][dy][0] == "mine":
                 real_mines += 1
+
+    #If the correct number of mines have been flagged around the site, 
+    #then the remaining surrounding sites will be auto-revealed recursively.
+    #But in this case if a site is flagged in error, 
+    #a real mine around the site will explode immediately.
+
     if real_mines == marked_mines:
         for d in range(9):
             if d==4:
