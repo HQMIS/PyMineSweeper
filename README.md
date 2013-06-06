@@ -16,6 +16,7 @@ PyMineSweeper
    * Mark a mine: `enter`
    * Cancel a mark: `u`
    * Quit: `q`
+ * Have fun!
 
 
   [1]: http://excess.org/urwid/
