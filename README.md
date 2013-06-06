@@ -2,6 +2,7 @@ PyMineSweeper
 =============
 
 This is a CLI mine sweeper toy written in Python 
+
  * To run:
    * Be sure that you have installed [urwid][1] 
    * run `python minesweeper.py`
@@ -16,6 +17,7 @@ This is a CLI mine sweeper toy written in Python
    * Mark a mine: `enter`
    * Cancel a mark: `u`
    * Quit: `q`
+
 Have fun!
 
 
